@@ -1,0 +1,50 @@
+.btn {
+  width: 5.625rem;
+  height: 5.625rem;
+  border-radius: 4rem;
+  background-color: var(--black);
+  transition: all 0.2s;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &-blue {
+    border: 0.25rem solid var(--blue);
+    &:active {
+      background-color: var(--blue);
+    }
+  }
+  &-green {
+    border: 0.25rem solid var(--green);
+    &:active {
+      background-color: var(--green);
+    }
+  }
+  &-red {
+    border: 0.25rem solid var(--red);
+    &:active {
+      background-color: var(--red);
+    }
+  }
+  &-yellow {
+    border: 0.25rem solid var(--yellow);
+    &:active {
+      background-color: var(--yellow);
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  margin: 2rem;
+
+  &-top,
+  &-bottom {
+    justify-content: center;
+  }
+  &-mid {
+    justify-content: space-around;
+  }
+}
