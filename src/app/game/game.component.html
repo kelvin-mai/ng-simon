@@ -1,4 +1,7 @@
-<div *ngIf="message" class="message">{{ message }}</div>
+<div class="message-container" [ngClass]="{'show': show}" >
+	<div *ngIf="message" class="message">{{ message }}</div>
+</div>
+
 
 <div class="flex flex-top">
 	<button class="btn btn-blue" (click)="handleClick('blue')" ></button>
@@ -15,4 +18,6 @@
 	<button class="btn btn-yellow" (click)="handleClick('yellow')" ></button>
 </div>
 
-<button (click)="restart()">Restart</button>
+<div class="flex flex-bottom">
+	<button class="btn btn-restart" (click)="restart()">Restart</button>
+</div>

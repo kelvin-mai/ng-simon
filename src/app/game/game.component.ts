@@ -12,6 +12,7 @@ export class GameComponent implements OnInit {
   simon: string[] = [];
   player: string[] = [];
   message: string;
+  show: boolean = false;
 
   constructor() {}
 
@@ -20,21 +21,26 @@ export class GameComponent implements OnInit {
     console.log(this.simon);
   }
 
+  get randomColor(): string {
+    return Colors[
+      Math.floor(Math.random() * (Object.keys(Colors).length / 2 - 1))
+    ];
+  }
+
   generateSimon(num: number): string[] {
     const arr: string[] = [];
-
     for (let i = 0; i < num; i++) {
-      const rand = Math.floor(
-        Math.random() * (Object.keys(Colors).length / 2 - 1)
-      );
-      arr.push(Colors[rand]);
+      arr.push(this.randomColor);
     }
-    console.log(arr);
     return arr;
   }
 
+  appendSimon() {
+    this.simon.push(this.randomColor);
+  }
+
   handleClick(e) {
-    if (this.message) this.message = '';
+    if (this.message) this.clearMessage();
     this.player.push(e);
     console.log(this.player);
     this.compareSimon();
@@ -45,22 +51,35 @@ export class GameComponent implements OnInit {
       this.simon.slice(0, this.player.length).toString() !=
       this.player.toString()
     ) {
-      this.message = 'wrong move';
+      this.showMessage('wrong move');
       this.player = [];
       return;
     }
 
     if (this.simon.length == this.player.length) {
       this.count++;
-      this.simon = this.generateSimon(this.count);
+      if (this.count == 5) this.showMessage('you win');
+      this.appendSimon();
       this.player = [];
+
+      console.log(this.simon, this.player);
       return;
     }
   }
 
   restart() {
+    this.clearMessage();
     this.count = 1;
     this.simon = this.generateSimon(this.count);
     this.player = [];
+  }
+
+  showMessage(message: string) {
+    this.message = message;
+    this.show = true;
+  }
+  clearMessage() {
+    this.message = '';
+    this.show = false;
   }
 }
