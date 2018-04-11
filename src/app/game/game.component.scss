@@ -48,3 +48,11 @@
     justify-content: space-around;
   }
 }
+
+.message {
+  background-color: var(--danger);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
