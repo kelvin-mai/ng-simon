@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Colors } from '../models/colors.enum';
-import { sounds, sleep } from '../models/constants';
-
-const asyncForEach = async (array, callback) => {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-};
+import {
+  asyncForEach,
+  ClassList,
+  Colors,
+  sleep,
+  sounds
+} from '../models/game.constants';
 
 @Component({
   selector: 'game',
@@ -22,7 +21,7 @@ export class GameComponent implements OnInit {
   messageFail: boolean = true;
   messageSuccess: boolean = false;
   show: boolean = false;
-  classList = {
+  classList: ClassList = {
     blue: false,
     red: false,
     yellow: false,
@@ -51,7 +50,7 @@ export class GameComponent implements OnInit {
     this.showSimon();
   }
 
-  showSimon() {
+  showSimon(): void {
     asyncForEach(this.simon, async item => {
       this.classList[item] = true;
       this.playSound(item);
@@ -112,7 +111,7 @@ export class GameComponent implements OnInit {
     this.show = false;
   }
 
-  playSound(sound: string) {
+  playSound(sound: string): void {
     const audio = new Audio(sounds[sound]);
     audio.play();
   }
