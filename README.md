@@ -1,10 +1,16 @@
 # Simon
 
-freeCodeCamp Build a Simon Game
+freeCodeCamp Build a Simon Game, design heavily inspired by [Wojciech Kałużny](https://medium.com/front-end-hacking/create-simon-game-in-javascript-d53b474a7416)'s article.
+
+![screenshot](screenshots/screenshot.png)
 
 ## Installation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+
+## Built With
+
+* [Angular 5](https://angular.io/) - JavaScript front end framework
 
 ## User Stories
 
