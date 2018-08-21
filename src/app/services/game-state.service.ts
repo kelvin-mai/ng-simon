@@ -26,8 +26,10 @@ export class GameStateService {
     return this.simon;
   }
 
-  appendSimon(): void {
-    this.count++;
+  appendSimon(increment: boolean = false): void {
+    if (increment) {
+      this.count++;
+    }
     this.simon.push(this.randomColor);
   }
 
@@ -45,7 +47,7 @@ export class GameStateService {
 
   compareSimon(): boolean {
     for (let i = 0; i < this.player.length; i++) {
-      if (this.player[i] === this.simon[i]) {
+      if (this.player[i] !== this.simon[i]) {
         return false;
       }
     }
