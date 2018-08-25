@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { COLORS, START_COUNT } from '../models/constants';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class GameStateService {
   count: number;
   simon: string[] = [];
   player: string[] = [];
+  state = new Subject<any>();
 
   constructor() {
     this.count = START_COUNT;
@@ -23,6 +25,7 @@ export class GameStateService {
       this.appendSimon();
     }
 
+    this.setState();
     return this.simon;
   }
 
@@ -43,6 +46,8 @@ export class GameStateService {
     if (!this.compareSimon()) {
       this.player = [];
     }
+
+    this.setState();
   }
 
   compareSimon(): boolean {
@@ -51,6 +56,24 @@ export class GameStateService {
         return false;
       }
     }
+
+    if (this.player.length === this.simon.length) {
+      this.updateGame();
+    }
+
     return true;
+  }
+
+  updateGame() {
+    this.appendSimon(true);
+    this.player = [];
+  }
+
+  setState() {
+    this.state.next({
+      player: this.player,
+      simon: this.simon,
+      count: this.count
+    });
   }
 }

@@ -11,7 +11,10 @@ export class GameComponent implements OnInit {
   constructor(private game: GameStateService) {}
 
   ngOnInit() {
-    console.log(this.game.generateSimon());
+    this.game.state.subscribe(state => {
+      console.log(state);
+    });
+    this.game.generateSimon();
   }
 
   playerGuess(e: string) {
