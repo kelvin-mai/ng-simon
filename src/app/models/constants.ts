@@ -6,3 +6,7 @@ export enum COLORS {
 }
 
 export const START_COUNT = 2;
+
+export const sleep = async time => {
+  return new Promise(resolve => setTimeout(resolve, time));
+};

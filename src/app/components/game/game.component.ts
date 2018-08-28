@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GameStateService } from '../../services/game-state.service';
+import { sleep } from '../../models/constants';
 
 @Component({
   selector: 'app-game',
@@ -21,8 +22,10 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.game.state.subscribe(state => {
       console.log(state);
-      this.count = state.count;
-      this.teasePlayer(state.simon);
+      if (this.count != state.count) {
+        this.count = state.count;
+        this.teasePlayer(state.simon);
+      }
     });
     this.game.generateSimon();
   }
@@ -31,9 +34,12 @@ export class GameComponent implements OnInit {
     this.game.playerGuess(e);
   }
 
-  teasePlayer(simon: string[]) {
+  async teasePlayer(simon: string[]) {
     for (let i = 0; i < simon.length; i++) {
       this.colors[simon[i]] = true;
+      await sleep(500);
+      this.colors[simon[i]] = false;
+      await sleep(200);
     }
   }
 }
