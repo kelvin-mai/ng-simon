@@ -8,9 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class GameButtonComponent implements OnInit {
   @Input()
   color: string;
+  @Input()
+  active: boolean = false;
   @Output()
   guess: EventEmitter<string> = new EventEmitter<string>();
-  active: boolean = true;
 
   constructor() {}
 

@@ -21,6 +21,7 @@ export class GameStateService {
   }
 
   generateSimon(): string[] {
+    this.simon = [];
     for (let i = 0; i < this.count; i++) {
       this.appendSimon();
     }
